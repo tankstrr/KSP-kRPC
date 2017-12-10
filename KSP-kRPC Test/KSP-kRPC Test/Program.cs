@@ -30,17 +30,19 @@ class Program
         while (true)
         {
             TimeSpan timeM = TimeSpan.FromSeconds(met.Get());
-            TimeSpan timeU = TimeSpan.FromSeconds(ut.Get());
+            //TimeSpan kerbalYear = new TimeSpan(426, 0, 0, 0);
+            //TimeSpan timeU = TimeSpan.FromSeconds(ut.Get()) + kerbalYear;
 
             //here backslash is must to tell that colon is
             //not the part of format, it just a character that we want in output
             string metF = timeM.ToString(@"ddd\:hh\:mm\:ss\.fff");
-            string utF = timeU.ToString(@"ddd\:hh\:mm\:ss\.fff");
+            //string utF = timeU.ToString(@"ddd\:hh\:mm\:ss\.fff");
             float elecNew = elec.Get();
-            float elecRate = (elecOld - elecNew) * 4;
+            float elecRate = (elecOld - elecNew) * 10;
 
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("MET: {0}       UT: {1}       VES: {1}", metF, utF, name.Get());
+            Console.WriteLine("MET: {0}      VES: {1}", metF, name.Get());
+            //Console.WriteLine(" UT: {0}", utF);
             //Console.WriteLine(" UT: {0}", TimeZoneInfo.ConvertTimeFromUtc(ut.Get()));
             Console.WriteLine("");
             Console.WriteLine("APO: {0,15:n0} m", apoapsis.Get());
@@ -57,7 +59,7 @@ class Program
 
             elecOld = elecNew;
 
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(100);
         }
     }
 }
